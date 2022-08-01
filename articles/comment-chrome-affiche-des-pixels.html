@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>aaadryyy.github.io</title>
+    <link rel="stylesheet" href="./style.css" />
+    <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon" /> -->
+  </head>
+  <body>
+    <a href="../index.html">Retour</a>
+    <article>
+      <h1>Comment Chrome affiche des pixels ?</h1>
+      <hr />
+      <p>
+        Voici un résumé d'une video dispensée par la Chromium University
+        intitulée
+        <cite
+          ><a href="https://www.youtube.com/watch?v=K2QHdgAKP-s" target="_blank"
+            >Life of a Pixel</a
+          ></cite
+        >.
+      </p>
+      <hr />
+      <h3>Au premier chargement</h3>
+      <p>Via le main thread du browser:</p>
+      <ol>
+        <li>
+          <p><strong>DOM - Parsing de l’HTML</strong> (=analyse)</p>
+          <ol type="A">
+            <li>
+              <p><strong>Lecture et tokenisation des bytes</strong></p>
+            </li>
+            <li>
+              <p><strong>Génération d’un object C++</strong> c’est le DOM !</p>
+            </li>
+            <blockquote>
+              Pour rappel, le DOM c’est à la fois la représentation interne qu’a
+              le Browser de l’html, et aussi l’API exploitable par JS.
+              <br />
+              Il peut y avoir plusieurs DOM dans un document. html peut
+              supporter l’ajout de Widgets qui vont avoir leur DOM interne
+              encapsulés dans un Shadow tree.
+              <br />
+              Le document entier sera ensuite rassemblé dans un unique arbre
+              FlatTreeTraversal.
+            </blockquote>
+          </ol>
+        </li>
+
+        <li>
+          <p><strong>STYLE - Parsing du CSS</strong></p>
+          <ol type="A">
+            <li>
+              <p>
+                <strong>Génération d’un object C++</strong> pour toutes les
+                règles CSS sous la forme “Propriété: value” (= BorderLeftColor:
+                0x0000FFFF;)
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>Puis on parcours le DOM</strong> et pour chaque node, on
+                calcule son style (= Style recalc) en s’aidant de l’objet généré
+                précédemment.
+              </p>
+            </li>
+            <blockquote>
+              A quelques exceptions prêt, le résultat est ce qu’on voit dans le
+              devtool !
+            </blockquote>
+          </ol>
+        </li>
+        <li>
+          <p>
+            <strong>LAYOUT - Calcul du layout</strong> (= visual geometry)
+            c’est-à-dire les coordonnées des “boites” qui composent la page (x,
+            y, width et height)
+          </p>
+          <ol type="A">
+            <li>
+              <p>
+                <strong>On parcours le DOM</strong> et pour chaque node, on
+                calcule un LayoutObject. La somme de tout ces LayoutObjects
+                donne le LayoutTree.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>Chaque LayoutObject</strong> est une implémentation d’un
+                des LayoutAlgorithm (= LayoutBox, LayoutInline, LayoutTable…) et
+                d’autres règles (= line breaks, scrollbar etc…)
+              </p>
+            </li>
+            <blockquote>
+              Pour faire du layout il faut mesurer la place que prend le texte
+              dans la page grâce à une sous-discipline de la Computer Science
+              appelé <strong>text shaping</strong>.
+              <br />
+              HarfBuzz est la librairie utilisée et le travaille des ingés
+              consistent à l’exploiter au mieux.
+            </blockquote>
+          </ol>
+        </li>
+        <li>
+          <p>
+            <strong>Enregistrement d’instructions de peinture</strong> (= paint
+            ops) dans un paint artefact pour être utilisé plus tard.
+          </p>
+        </li>
+      </ol>
+      <p>Via l’impl thread (ou compositor thread):</p>
+      <ol>
+        <li>
+          <p>
+            <strong>Rasterization des instructions</strong> (= pixellisation)
+            grâce c’est à dire transformées en un tableau de bits (= bitmap) et
+            enregistrées en mémoire. <br />
+            Chaque cellule du tableau est une couleur. La rasterization est
+            aussi utilisée dans le décodage des images.
+          </p>
+        </li>
+        <blockquote>
+          La rasterization est elle aussi une sous-discipline de la computer
+          science
+        </blockquote>
+        <li>
+          <p>
+            <strong>Passe le résultat au GPU</strong> qui l’affiche à l’écran !
+          </p>
+        </li>
+      </ol>
+      <p>
+        Quand il y a update (= par exemple un scroll, un zoom…) d’autres process
+        rentrent en jeu comme le compositing.
+        <br />
+        L’idée ici est de décomposer la page en calques puis en tuiles dans le
+        main thread et d’updater chacun de ces sous éléments individuellement
+        avant
+        <br />
+        des les recombiner dans le compositor thread.
+      </p>
+    </article>
+  </body>
+</html>
