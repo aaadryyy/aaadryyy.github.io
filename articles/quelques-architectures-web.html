@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>aaadryyy.github.io</title>
+    <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon" /> -->
+  </head>
+  <body>
+    <a href="../index.html">Retour</a>
+    <article>
+      <h1>WIP - Quelques architectures de sites web</h1>
+      <hr />
+      <p>
+        Voici donc un court récapitulatif de quelques différentes architectures
+        de sites web depuis sa création.
+      </p>
+      <!-- <p>
+        Je me suis allègrement inspiré de l'article
+        <cite>
+          <a
+            href="https://www.epicweb.dev/the-webs-next-transition"
+            target="_blank"
+            >The Web's Next Transition de Kent C. Dodds.</a
+          ></cite
+        >.
+      </p> -->
+      <hr />
+
+      <h3>
+        <mark>1990's</mark>
+        MPA - Multi-Pages Application
+      </h3>
+      <p>Le site web <em>classique.</em></p>
+      <p>Au commencement c'était la seule architecture possible.</p>
+      <p>
+        C'est un ensemble de pages (= des documents html ou xhtml) rassemblés
+        sous un même nom de domaine et accessibles via une connection internet.
+      </p>
+      <p>Ici, tout le code réside côté serveur.</p>
+      <h4>Lien</h4>
+      <ol>
+        <li>
+          L’utilisateur écrit une URL dans la barre d’adresse (à la main ou via
+          un lien)
+        </li>
+        <li>le client (= navigateur) envoi une requête au serveur</li>
+        <li>le serveur renvoi un document html au client qui va l’afficher</li>
+      </ol>
+      <h4>Formulaire</h4>
+      <ol>
+        <li>L’utilisateur valide le formulaire</li>
+        <li>Le navigateur envoi les informations du formulaire au serveur</li>
+        <li>
+          Le serveur crée ou modifie la data et la fait persister en base de
+          donnée
+        </li>
+        <li>Le serveur renvoi un redirection</li>
+        <li>
+          Le client est redirigé vers une nouvelle URL et fait une requête GET
+          comme précédemment.
+        </li>
+      </ol>
+      <h4>Les +</h4>
+      <ul>
+        <li>C'est simple</li>
+        <li>C'est rapide</li>
+      </ul>
+      <h4>Les -</h4>
+      <ul>
+        <li>Chaque interaction rafraîchit la page entièrement.</li>
+        <li>(Quasiment) aucun feedback d’UI: pas d’état de chargement.</li>
+      </ul>
+
+      <h3>
+        <mark>2000's</mark>
+        PEMPA - Progressive Enhanced Multi-Pages Application
+      </h3>
+      <p>
+        Les années suivant la création du web ont vu
+        <a
+          href="https://upload.wikimedia.org/wikipedia/commons/7/74/Timeline_of_web_browsers.svg"
+          target="_blank"
+          rel="noreferrer"
+          >l’émergence d’une multitude de navigateurs.</a
+        >
+      </p>
+      <p>
+        Les développeurs ont donc dû adapter leur site web à chaque navigateur,
+        ayant souvent leur spécificités.
+      </p>
+      <p>
+        C’est ainsi qu’est née l’idée de de l’<em>Amélioration Progressive</em>
+        : avoir une MPA fonctionnelle et accessible sur tous les navigateurs
+        tout en utilisant les particularités de chacun pour améliorer
+        l’expérience utilisateur.
+      </p>
+      <p>
+        C’est aussi à la même période qu’AJAX apparait: plus besoin alors de
+        faire appel au serveur pour la moindre petite interaction (en tout cas
+        sur certains navigateurs) !
+      </p>
+      <h4>Lien</h4>
+      <p>
+        Exactement le même comportement qu’une MPA classique : le navigateur
+        requête un document qui est renvoyé par le serveur.
+      </p>
+      <h4>Navigation côté client</h4>
+      <ol>
+        <li>Un utilisateur clique sur un lien ayant un href</li>
+        <li>
+          Le code écrit côté client va empêcher le comportement par défaut du
+          navigateur (la requête au serveur et le rafraîchissement de la page).
+          Toutes ces actions sont donc faites manuellement à la place du
+          navigateur :
+        </li>
+        <ol>
+          <li>L’URL est mise à jour</li>
+          <li>La requête au serveur pour récupérer les données</li>
+          <li>Puis la mise à jour des données dans le navigateur</li>
+        </ol>
+      </ol>
+      <h4>Formulaire</h4>
+      <ol>
+        <li>
+          Lorsqu’un utilisateur envoi un formulaire, de nouveau le code va
+          empêcher le comportement par défaut du navigateur (un POST et un
+          rafraîchissement complet de la page)
+        </li>
+        <li>Javascript va envoyer la donnée du formulaire au serveur</li>
+        <li>
+          Le serveur va renvoyer les données adéquates qui vont mettre à jour
+          les données côté client.
+        </li>
+      </ol>
+      <h4>Les +</h4>
+      <ul>
+        <li>Le problème de rafraîchissement des pages est résolu</li>
+        <li>
+          Plus généralement, un gain de contrôle côté client pour une meilleure
+          expérience utilisateur
+        </li>
+      </ul>
+      <h4>Les -</h4>
+      <ul>
+        <li>
+          On doit simuler le comportement des navigateurs, ce qui rajoute une
+          couche de complexité : routing, form submission, garder la data à jour
+          côté front…
+        </li>
+        <li>Bien plus de code à gérer, et donc bien plus de bug</li>
+        <li>
+          Énormément de code est dupliqué depuis le back car tous les
+          navigateurs ne géraient pas forcément AJAX. Il faut donc s’assurer que
+          la version MPA fonctionne toujours, tout en dupliquant beaucoup de
+          code côté front au cas ou le navigateur serait assez puissant.
+        </li>
+        <li>L’organisation du code devient plus complexe</li>
+        <li>
+          La synchronisation Serveur/Navigateur manque de clarté. Ce qui est mis
+          à jour d’un côté doit l’être de l’autre et inversement.
+        </li>
+      </ul>
+      <h3>
+        <mark>2010's</mark>
+        SPA - Single Page Application
+      </h3>
+      <p><em>Application à page unique</em></p>
+      <p>
+        Tout le code originellement dupliqué côté backend a été rapatrié côté
+        client, notamment tout le rendu de l’UI au profit de simples routes API
+        qui renvoient du JSON.
+      </p>
+      <h4>Lien</h4>
+      <ol>
+        <li>
+          L’utilisateur écrit une URL dans la barre d’adresse (à la main ou via
+          un lien)
+        </li>
+        <li>le client (= navigateur) envoi une requête au serveur</li>
+        <li>le serveur renvoi un document html au client qui va l’afficher</li>
+        <li>
+          L’on va ensuite télécharger le Javascript (sauf dans le cas des SSG
+          pour les pages statiques)
+        </li>
+        <li>Et une fois l’UI rendue, on va fetch les données</li>
+      </ol>
+      <h4>Formulaire</h4>
+      <p>La même chose que les PEMPAs</p>
+      <h4>Les +</h4>
+      <ul>
+        <li>La DX !</li>
+      </ul>
+      <h4>Les -</h4>
+      <ul>
+        <li>
+          La requête initiale est encore pire, avec ses successions de requêtes
+          serveur pour afficher la donnée
+        </li>
+        <li>
+          La SEO en est donc affectée si on ne met pas en place de la SSG
+          (Server Side Generation) pour les pages statiques.
+        </li>
+        <li>La taille du bundle a explosé, ce qui a miné la performance</li>
+        <li>
+          Les cascades : document → app.js → page.js → component.js → data.json
+          → image.png.
+        </li>
+        <li>
+          La gestion du state s’est complexifié. Auparavant, le DOM était le
+          state. Maintenant il faut écrire une grosse quantité de code pour
+          gérer les différents states de l’app.
+        </li>
+        <li>Javascript <em>Fatigue.</em></li>
+      </ul>
+      <h3>Et ensuite ?</h3>
+      <p>...</p>
+    </article>
+  </body>
+</html>
