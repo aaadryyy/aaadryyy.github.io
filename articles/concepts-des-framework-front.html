@@ -20,6 +20,26 @@
       <h2>Transpilation</h2>
       <h3>Les effets</h3>
       <h3>La mémoïsation</h3>
+      <p>
+        C'est une technique d'optimisation qui vise à éviter de rendre à nouveau
+        des composants qui ne doivent pas l'être.
+      </p>
+      <p>
+        L'idée va être de mettre en cache des valeurs retournées par une
+        fonction, en fonction de ses valeurs d'entrée.
+      </p>
+      <p>Cependant, 2 approches sont possible : l'exclusion ou l'inclusion</p>
+      <ul>
+        <li>
+          <b>Exclusion</b> on va ignorer une partie du code si les valeurs qu'il
+          utilise n'ont pas bougées. (React...)
+        </li>
+        <li>
+          <b>Inclusion</b> le code va ignorer les parties du code par défaut, et
+          l'on va ajouter uniquement le code que l'on souhaite voir recalculé
+          (Svelte...)
+        </li>
+      </ul>
       <h3>Le rendu (rendering)</h3>
     </article>
   </body>
