@@ -1,0 +1,68 @@
+:root {
+  --main-background-color: #151515;
+  --home-list-default-text-color: #dedede;
+  --home-list-unfocused-text-color: #a0a0a0;
+  --home-list-unfocused-color: #434343;
+}
+
+* {
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+body {
+  background-color: var(--main-background-color);
+  color: var(--home-list-default-text-color);
+}
+main {
+  margin: 70px auto;
+  max-width: 720px;
+}
+a {
+  color: var(--home-list-default-text-color);
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul:hover > li,
+ul:hover > li > a,
+ul:hover > li > a > .list-description {
+  color: var(--home-list-unfocused-color);
+  transition-property: color;
+  transition-duration: 250ms;
+}
+
+ul > li:hover,
+ul > li:hover a {
+  color: var(--home-list-default-text-color);
+  cursor: pointer;
+}
+
+ul > li:hover a > .list-description {
+  color: var(--home-list-unfocused-text-color);
+}
+
+.list-link-article {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px 0;
+}
+
+.list-description {
+  color: var(--home-list-unfocused-text-color);
+}
+
+.list-separator {
+  flex: 1 1 0;
+  min-width: 16px;
+  color: var(--main-background-color);
+}
