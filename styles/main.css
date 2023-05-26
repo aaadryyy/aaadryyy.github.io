@@ -1,8 +1,8 @@
 :root {
   --main-background-color: #151515;
   --home-list-default-text-color: #dedede;
-  --home-list-unfocused-text-color: #a0a0a0;
-  --home-list-unfocused-color: #434343;
+  --home-list-unfocused-text-color: #959595;
+  --home-list-unfocused-text-color2: #434343;
 }
 
 * {
@@ -31,8 +31,10 @@ ul {
 
 ul:hover > li,
 ul:hover > li > a,
-ul:hover > li > a > .list-description {
-  color: var(--home-list-unfocused-color);
+ul:hover > li > a > .list-description,
+ul:hover > li > a > .list-separator,
+ul:hover > li > a > .list-year {
+  color: var(--home-list-unfocused-text-color2);
   transition-property: color;
   transition-duration: 250ms;
 }
@@ -43,7 +45,8 @@ ul > li:hover a {
   cursor: pointer;
 }
 
-ul > li:hover a > .list-description {
+ul > li:hover a > .list-description,
+ul > li:hover a > .list-year {
   color: var(--home-list-unfocused-text-color);
 }
 
@@ -55,6 +58,7 @@ ul > li:hover a > .list-description {
   justify-content: space-between;
   gap: 8px;
   padding: 16px 0;
+  flex-wrap: wrap;
 }
 
 .list-description {
@@ -64,5 +68,11 @@ ul > li:hover a > .list-description {
 .list-separator {
   flex: 1 1 0;
   min-width: 16px;
-  color: var(--main-background-color);
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid var(--home-list-unfocused-text-color2);
+}
+
+.list-year {
+  color: var(--home-list-unfocused-text-color);
 }
