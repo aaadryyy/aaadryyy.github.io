@@ -1,17 +1,3 @@
-img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
 article {
   display: flex;
   overflow: auto;
@@ -21,20 +7,25 @@ article {
   position: relative;
 }
 
-article > section {
+section {
   scroll-snap-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
   flex: none;
   height: 100%;
 }
 
-.section-header {
+.section-title {
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
 
-.section-header > a {
+.section-title > a {
   &:first-child {
     position: absolute;
     top: 10px;
@@ -55,22 +46,20 @@ article > section {
   flex: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   article {
     padding-bottom: 300px;
-  }
-  section {
-    display: block;
-  }
-
-  article {
+    overflow: none;
     scroll-snap-type: none;
     flex-direction: column;
     gap: 100px;
   }
+  section {
+    flex-direction: column;
+    height: auto;
+  }
 
   .img-container {
     width: auto;
-    float: none;
   }
 }
