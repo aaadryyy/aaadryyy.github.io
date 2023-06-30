@@ -12,15 +12,16 @@ section {
   flex-wrap: wrap;
 }
 
-.container {
+article {
   display: flex;
   overflow: auto;
   flex-direction: column;
   height: 100vh;
   scroll-snap-type: y mandatory;
+  position: relative;
 }
 
-.container > section {
+article > section {
   scroll-snap-align: center;
   flex: none;
   height: 100%;
@@ -31,6 +32,14 @@ section {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.section-header > a {
+  &:first-child {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
 }
 
 .img-container {
@@ -54,7 +63,7 @@ section {
     display: block;
   }
 
-  .container {
+  article {
     scroll-snap-type: none;
     flex-direction: column;
     gap: 100px;
