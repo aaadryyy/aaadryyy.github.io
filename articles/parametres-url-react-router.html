@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../styles/articles/default-layout.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../styles/main.css" />
+    <title>
+      Comment implémenter des paramètres de recherche avec React Router v.6 ?
+    </title>
+  </head>
+  <body>
+    <main>
+      <article>
+        <section class="header">
+          <a href="../index.html">Retour</a>
+          <img
+            src="../assets/images//articles/url-search-params/url-search-params-00.jpg"
+            alt="Illustration dans le style de Moebius. Dans un univers futuriste et apocalyptique, 
+            un développeur assis par terre dans un hangar tente de régler un bug sur un panneau d'affichage 
+            de texte déroulant montrant une URL suivie de paramètres."
+          />
+          <h1 class="title">
+            Comment implémenter des paramètres de recherche avec React Router
+            v.6 ?
+          </h1>
+          <h2>// gérer les null</h2>
+          <h2>// conclusion</h2>
+          <h2>// relecture</h2>
+          <h2>// test IRL</h2>
+          <h2>// illustration</h2>
+          <div class="question">
+            <h2>Question</h2>
+            <i>
+              <p>J'ai une page affichant une liste filtrable et paginable.</p>
+              <p>
+                L'UX de cette page est mauvaise: si je consulte un élement de la
+                liste puis que je retourne sur cette liste, je perd mes filtres
+                et retourne à la page 1.
+              </p>
+              <p>Voici mon composant :</p>
+              <p>Comment faire ?</p>
+            </i>
+            <pre>
+            <code>
+              import React, { useState } from 'react';
+              
+              const UsersList = () => {
+                const [page, setPage] = useState(1)
+                const [search, setSearch] = useState("")
+                const [status, setStatus] = useState([])
+
+                return (
+                  &lt;>
+                    &lt;h1>Users&lt;/h1>
+
+                    &lt;Filters 
+                        searchValue={search}
+                        onSearch={(newSearch) => setSearch(newSearch)}
+                        statusValue={status}
+                        onStatusChange={(newValue) => setStatus(newValue)}
+                      />
+
+                    &lt;List/>
+
+                    &lt;Pagination
+                      page={page}
+                      onChange={(newPage) => setPage(newPage)}
+                      />
+                  &lt;/>
+                )   
+              }
+            </code>
+          </pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Réponse</h2>
+          <p>
+            <a
+              href="https://reactrouter.com/en/main/start/overview"
+              target="_blank"
+              >React Router v.6</a
+            >
+            fournit le hook
+            <a
+              href="https://reactrouter.com/en/main/hooks/use-search-params"
+              target="_blank"
+              ><code>useSearchParams</code></a
+            >.
+          </p>
+          <p><b>TL;DR</b> Voilà comment procéder</p>
+          <pre>
+            <code>
+            <del>CODE FINAL</del>
+            </code>
+          </pre>
+          <b>Explications</b>
+          <p>
+            L'idée ici est de remplacer les filtres et la pagination utilisants
+            le <code>useState</code> de React par le
+            <code>useSearchParams</code> de React Router. Cela va permettre de
+            gérer l'<i>état</i> (= state) du composant directement dans l'URL.
+          </p>
+          <p>
+            Ce hook nous retourne un array de 2 valeurs :
+            <code>searchParams</code>
+            qui est les paramètres de la localisation en cours, et
+            <code>setSearchParams</code>, une fonction qui peut être utilisée
+            pour mettre à jour ces mêmes paramètres.
+          </p>
+          <p>Commençons par la pagination.</p>
+          <ol>
+            <li>
+              <p>
+                On commence par remplacer <code>useState</code> par
+                <code>useSearchParams</code> en lui fournissant une valeur de
+                page par défaut.
+              </p>
+            </li>
+            <li>
+              <p>
+                Puis on recupère la valeur <code>page</code> venant de l'URL.
+                L'URL renvoyant toujours de <code>string</code>, il faut veiller
+                à convertir la valeur en nombre.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Et l'on met à jour les paramètres d'URL au moment de la
+                pagination.
+              </p>
+            </li>
+          </ol>
+          <pre>
+            <code>
+              import React, { useState } from 'react';
+              <ins>import { useSearchParams } from "react-router-dom";</ins>
+              
+              const UsersList = () => {
+                <del>const [page, setPage] = useState(1)</del>
+                <ins>const [searchParams, setSearchParams] = useSearchParams({ page: 1 });</ins>
+                ...
+
+                return (
+                  &lt;>
+                    &lt;h1>Users&lt;/h1>
+
+                    ...
+                    
+                    &lt;Pagination
+                      <del>page={page}</del>
+                      <ins>page={+(searchParams.get("page"))}</ins>
+                      <del>onChange={(newPage) => setPage(newPage)}</del>
+                      <ins>onChange={(newPage) => setSearchParams(prev => {
+                          prev.set(page: newPage)
+                          return prev
+                        })
+                      }</ins>
+                      />
+                  &lt;/>
+                )   
+              }
+            </code>
+          </pre>
+          <p>
+            Et voilà ! L'URL sera mise à jour à chaque changement de page et
+            sera persistée dans l'URL pour retrouver la même page en revenant
+            sur cette liste.
+          </p>
+          <p>Vous n'avez plus qu'à décliner ce code sur les autres filtres :</p>
+
+          <pre>
+              <code>
+                import React, { useState } from 'react';
+                import { useSearchParams } from "react-router-dom";
+                
+                const UsersList = () => {
+                  <ins>const [searchParams, setSearchParams] = useSearchParams({ page: 1, search: "", status: [] });</ins>
+  
+                  return (
+                    &lt;>
+                      &lt;h1>Users&lt;/h1>
+
+                      &lt;Filters 
+                        <del>searchValue={search}</del>
+                        <ins>searchValue={searchParams.get("search")}</ins>
+                        <del>onSearch={(newSearch) => setSearch(newSearch)}</del>
+                        <ins>onSearch={(newSearch) => (newPage) => setSearchParams(prev => {
+                                prev.set(search: newSearch)
+                                return prev
+                              }, { replace: true })
+                            }</ins>
+                        <del>statusValue={status}</del>
+                        <ins>statusValue={searchParams.get("status")}</ins>
+                        <del>onStatusChange={(newStatus) => setStatus(newStatus)}</del>
+                        <ins>onStatusChange={(newStatus) => setSearchParams(prev => {
+                              prev.set(status: newStatus)
+                              return prev
+                              }, { replace: true }
+                            )}</ins>
+                      />
+
+                      &lt;Pagination
+                      page={+(searchParams.get("page"))}
+                      <del>onChange={(newPage) => setSearchParams({ page: newPage })}</del>
+                      onChange={(newPage) => setSearchParams(prev => {
+                          prev.set(page: newPage)
+                          return prev
+                          <ins>}, { replace: true })</ins>
+                      }
+                      />
+
+                    &lt;/>
+                  )   
+                }
+              </code>
+            </pre>
+
+          <div class="callout-info">
+            <b>Info</b>
+            <p>Notez ici le <code>{ replace: true }</code>.</p>
+            <p>
+              Si plusieurs filtres sont appliqués à la suite, le retour en
+              arrière remontera chaque changement appliqué sur l'URL. Cette
+              option permet d'éviter celà.
+            </p>
+          </div>
+
+          <h3>Ré-usinage</h3>
+          <p>
+            Il ne reste plus qu'à ré-usiner le code pour éviter les répétitions
+            inutiles.
+          </p>
+          <ol>
+            <li>
+              <p>
+                On va isoler la récupération des variable en un même endroit,
+                pour une meilleure lecture. Nous pourrions d'ailleurs aussi
+                gérer les "null" de façon plus propre, mais ce n'est pas le
+                sujet de l'article.
+              </p>
+            </li>
+            <li>
+              <p>
+                Puis on créé une fonction <code>handleFilters()</code> qui prend
+                une clé et une valeur en paramètre, et qui sera utilisée à
+                chaque mise à jour des paramètres.
+              </p>
+            </li>
+          </ol>
+          <pre>
+            <code>
+              import React, { useState } from 'react';
+              import { useSearchParams } from "react-router-dom";
+              
+              const UsersList = () => {
+                const [searchParams, setSearchParams] = useSearchParams({ page: 1, search: "", status: [] });
+                <ins>const page = +(searchParams.get("page"))</ins>
+                <ins>const search = searchParams.get("search")</ins>
+                <ins>const status = searchParams.get("status")</ins>
+
+                <ins>const handleFilters = (key, value) => {
+                  setSearchParams(
+                    prev => {
+                      prev.set(key, value)
+                      return prev
+                    },
+                    { replace: true },
+                  )
+                  if (key !== 'page') handleFilters('page', 1)
+                }</ins>
+
+                return (
+                  &lt;>
+                    &lt;h1>Users&lt;/h1>
+
+                    &lt;Filters 
+                      <del>searchValue={searchParams.get("search")}</del>
+                      <ins>searchValue={search}</ins>
+                      <del>onSearch={(newSearch) => (newPage) => setSearchParams(prev => {
+                          prev.set(search: newSearch)
+                          return prev
+                        }, { replace: true })
+                      }</del>
+                      <ins>onSearch={(newSearch) => handleFilter("search", newSearch)}</ins>
+                      <del>onStatusChange={(newStatus) => setSearchParams(prev => {
+                        prev.set(status: newStatus)
+                        return prev
+                        }, { replace: true }
+                      )}</del>
+                      <ins>onStatusChange={(newStatus) => handleFilter("status", newStatus)}</ins>
+                      
+                    />
+
+                    &lt;Pagination
+                    <del>page={+(searchParams.get("page"))}</del>
+                    <ins>page={page}</ins>
+                    <del>onChange={(newPage) => setSearchParams(prev => {
+                        prev.set(page: newPage)
+                        return prev
+                      }, { replace: true })
+                    }</del>
+                    <ins>onChange={(newPage) => handleFilters("page", newPage)}</ins>
+                    />
+
+                  &lt;/>
+                )   
+              }
+            </code>
+          </pre>
+          <div class="callout-info">
+            <b>INFO</b>
+            <p>
+              Si besoin est, pour simuler le comportement du bouton de retour en
+              arrière natif de votre navigateur, vous pouvez invoquer
+              <code>navigate(-1)</code> issu de
+              <a
+                href="https://reactrouter.com/en/main/hooks/use-navigate"
+                target="_blank"
+                ><code>useNavigate</code></a
+              >, un autre hook de React Router v.6.
+            </p>
+          </div>
+        </section>
+        <a href="../index.html">Retour</a>
+      </article>
+    </main>
+  </body>
+</html>

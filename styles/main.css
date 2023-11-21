@@ -27,4 +27,47 @@ a {
 img {
   max-width: 100%;
   max-height: 100%;
+  border-radius: 4px;
+  aspect-ratio: auto;
+}
+
+pre {
+  background-color: #ffffff0a;
+  color: #dedede;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  & code {
+    background-color: transparent;
+  }
+}
+
+code {
+  font-family: monospace;
+  background-color: #ffffff0a;
+  color: #dedede;
+  padding: 2px 6px;
+  border-radius: 4px;
+  line-height: 1.5;
+  & ins {
+    font-family: monospace;
+    padding: 2px 6px 2px 0px;
+    border-radius: 4px;
+    background-color: #449d5d25;
+    color: #449d5d;
+    text-decoration: none;
+  }
+  & del {
+    font-family: monospace;
+    padding: 2px 6px 2px 0px;
+    border-radius: 4px;
+    background-color: #9d444425;
+    color: #9d4444;
+    text-decoration: none;
+  }
+}
+
+ul,
+ol {
+  padding-left: 15px;
 }

@@ -25,14 +25,6 @@ section {
   text-align: center;
 }
 
-.section-title > a {
-  &:first-child {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-  }
-}
-
 .img-container {
   width: 600px;
   float: right;
@@ -44,6 +36,7 @@ section {
 
 .content-wrapper {
   flex: 1;
+  padding-right: 50px;
 }
 
 @media (max-width: 1000px) {
