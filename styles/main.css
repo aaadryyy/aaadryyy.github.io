@@ -31,6 +31,10 @@ img {
   aspect-ratio: auto;
 }
 
+.border-radius-lg {
+  border-radius: 12px;
+}
+
 pre {
   background-color: #ffffff0a;
   color: #dedede;
