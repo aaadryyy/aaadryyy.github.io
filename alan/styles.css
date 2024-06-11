@@ -1,0 +1,301 @@
+@font-face {
+  font-family: "FiraSans"; /* Name your font family */
+  src: url("./assets/font/Fira_Sans/FiraSans-Regular.ttf");
+}
+
+body,
+html {
+  margin: 0;
+  font-family: "FiraSans", sans-serif;
+  line-height: 1.5;
+  font-size: 16px;
+  --primary-color: #00aeef;
+  --secondary-color: #242424;
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+  margin: 0;
+}
+
+p {
+  letter-spacing: 0.3px;
+}
+
+img {
+  border-radius: 8px;
+}
+
+figure {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+li {
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+button,
+a {
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+footer {
+  margin-top: 100px;
+}
+
+.button-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: 1px solid var(--primary-color);
+  &:hover {
+    background-color: #0077b5;
+    border: 1px solid #0077b5;
+  }
+}
+
+.button-secondary {
+  background-color: white;
+  color: var(--secondary-color);
+  border: 1px solid white;
+  &:hover {
+    background-color: #f1f1f1;
+    border: 1px solid #f1f1f1;
+  }
+}
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 10px 16px;
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  height: auto;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.hero {
+  background-color: var(--primary-color);
+  padding-top: 100px;
+}
+
+.competences {
+  margin-top: -180px;
+  padding-bottom: 100px;
+  .icon {
+    width: 50px;
+  }
+}
+
+.contact {
+  background-color: var(--secondary-color);
+  padding-bottom: 100px;
+}
+
+.assurances {
+  background-color: var(--primary-color);
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #cecece;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  h3,
+  p {
+    margin: 0;
+  }
+  span {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.gallerie {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-gap: 2rem;
+  img {
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+.avis {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 1rem;
+  .card {
+    object-fit: cover;
+  }
+}
+
+/* IDS */
+
+/* UTILITIES */
+.flex {
+  display: flex;
+}
+
+.direction-row {
+  flex-direction: row;
+}
+
+.direction-column {
+  flex-direction: column;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.align-items-start {
+  align-items: flex-start;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-stretch {
+  align-items: stretch;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-1 {
+  flex: 1;
+}
+.flex-2 {
+  flex: 2;
+}
+
+.break-word {
+  word-wrap: break-word;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 20px;
+}
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  display: grid;
+  gap: 20px;
+}
+.muted {
+  color: #6c757d;
+}
+
+.white {
+  color: white;
+}
+
+.square-400 {
+  width: 300px;
+  height: 300px;
+}
+
+.square-500 {
+  width: 500px;
+  min-width: 300px;
+  height: 500px;
+}
+
+.cover {
+  object-fit: cover;
+}
+
+.radius {
+  border-radius: 8px;
+}
+
+.background-primary {
+  background-color: var(--primary-color);
+}
+
+.background-secondary {
+  background-color: var(--secondary-color);
+}
+
+.padding-20 {
+  padding: 20px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.small {
+  font-size: 14px;
+}
+
+.min-width-300 {
+  min-width: 300px;
+}
+
+.min-width-500 {
+  min-width: 500px;
+  height: auto;
+}
+
+.max-width-300 {
+  max-width: 300px;
+}
+
+.max-width-500 {
+  max-width: 500px;
+}

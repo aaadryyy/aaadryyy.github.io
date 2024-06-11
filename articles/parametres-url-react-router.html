@@ -95,13 +95,14 @@
               ><code>useSearchParams</code></a
             >.
           </p>
-          <p><b>TL;DR</b> Voilà comment procéder</p>
+          <h3>TL;DR</h3>
+          Voilà comment procéder
           <pre>
             <code>
             <del>CODE FINAL</del>
             </code>
           </pre>
-          <b>Explications</b>
+          <h3>Explications</h3>
           <p>
             L'idée ici est de remplacer les filtres et la pagination utilisants
             le <code>useState</code> de React par le
@@ -115,7 +116,8 @@
             <code>setSearchParams</code>, une fonction qui peut être utilisée
             pour mettre à jour ces mêmes paramètres.
           </p>
-          <p>Commençons par la pagination.</p>
+          <br />
+          <p><b>Commençons par la pagination.</b></p>
           <ol>
             <li>
               <p>
@@ -233,11 +235,10 @@
               option permet d'éviter celà.
             </p>
           </div>
-
           <h3>Ré-usinage</h3>
           <p>
-            Il ne reste plus qu'à ré-usiner le code pour éviter les répétitions
-            inutiles.
+            Ce code fonctionne mais il est très redondant donc nous allons le
+            ré-usiner.
           </p>
           <ol>
             <li>
