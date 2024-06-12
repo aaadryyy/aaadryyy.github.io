@@ -20,58 +20,53 @@
       </div>
     </div>
     <!-- HERO -->
-    <section class="hero white">
+    <section class="bg-primary">
       <div class="container">
-        <div class="flex direction-row align-items-center flex-wrap gap-20">
-          <div class="flex-1 flex direction-column align-items-start gap-20 min-width-300">
-            <h1>Alan Vanpoucke</h1>
-            <h2>
-              Artisan depuis plus de 30 ans, j’ai fondé mon entreprise en 2011
-              et me suis spécialisé dans la création, aménagement et rénovation
-              de salle de bains du sol au plafond.
-            </h2>
-            <a href="#contact" class="button-secondary">Me contacter</a>
+        <div class="layout-2-col white hero">
+            <div class="flex direction-column align-items-start gap-20">
+              <h1 class="no-wrap">VPK Plomberie</h1>
+              <h2>
+                Artisan depuis plus de 30 ans, j’ai fondé mon entreprise en 2011
+                et me suis spécialisé dans la création, aménagement et rénovation
+                de salle de bains du sol au plafond.
+              </h2>
+              <a href="#contact" class="button-secondary">Me contacter</a>
+            </div>
+            <img src="./assets/img/alan-vapouke.jpg" alt="Portrait souriant Alan Vanpouke" class="cover"/>
           </div>
-          <img
-            src="./assets/img/alan-vapouke.jpg"
-            alt="Salle de bain"
-            class="square-500 cover flex-1"
-          />
         </div>
       </div>
     </section>
     <!-- COMPETENCES -->
     <div class="container">
       <div class="competences">
-        <div class="flex gap-20 flex-wrap">
-          <div class="card flex-1 radius">
-            <img src="./assets/icons/plumbing.svg" class="icon" />
-            <div class="text-center">
-              <h3>Plomberie</h3>
-              <p class="muted">Services de plomberie rapides et fiables pour toutes vos réparations, installations et entretiens.</p>
-            </div>
+        <div class="card flex-1 radius">
+          <img src="./assets/icons/plumbing.svg" class="icon" />
+          <div class="text-center">
+            <h3>Plomberie</h3>
+            <p class="muted">Services de plomberie rapides et fiables pour toutes vos réparations, installations et entretiens.</p>
           </div>
-          <div class="card flex-1 radius">
-            <img src="./assets/icons/bathtub.svg" class="icon" />
-            <div class="text-center">
-              <h3>Salle de bains</h3>
-              <p class="muted">Rénovation et création de salles de bain personnalisées, selon vos goûts.</p>
-            </div>
+        </div>
+        <div class="card flex-1 radius">
+          <img src="./assets/icons/bathtub.svg" class="icon" />
+          <div class="text-center">
+            <h3>Salle de bains</h3>
+            <p class="muted">Rénovation et création de salles de bain personnalisées, selon vos goûts.</p>
           </div>
-          <div class="card flex-1 radius">
-            <img src="./assets/icons/window.svg" class="icon" />
-            <div class="text-center">
-              <h3>Velux</h3>
-              <p class="muted">Installation de fenêtres de toit pour optimiser lumière et ventilation.</p>
-            </div>
+        </div>
+        <div class="card flex-1 radius">
+          <img src="./assets/icons/window.svg" class="icon" />
+          <div class="text-center">
+            <h3>Velux</h3>
+            <p class="muted">Installation de fenêtres de toit pour optimiser lumière et ventilation.</p>
           </div>
         </div>
       </div>
     </div>
     <!-- EXPERTISES -->
-    <section class="container competences">
-      <div class="flex direction-row align-items-center flex-wrap gap-20">
-        <div class="flex direction-column align-items-start gap-10 flex-1 min-width-300">
+    <section class="container ">
+      <div class="layout-2-col">
+        <div class="flex direction-column align-items-start gap-10 min-width-300 gap-20">
           <h2>Expertise et savoir-faire</h2>
           <p>
             Ces travaux nécessitent de l’expertise et du savoir-faire dans
@@ -97,7 +92,7 @@
         <img
           src="./assets/img/alan-vanpouke-dos-travaux.jpg"
           alt="Alan Vanpouke de dos qui travaille sur un chantier"
-          class="square-500 cover flex-1"
+          class="cover"
         />
       </div>
     </section>
@@ -141,9 +136,12 @@
     <section class="background-primary white">
       <div class="container">
           <div class="flex direction-column align-items-center gap-20">
-            <h2 class="text-center">
-              Besoin d'une intervention rapide ? Contactez-moi dès maintenant pour un devis gratuit !
-            </h2>
+            <div>
+              <h2 class="text-center">
+                Besoin d'une nouvelle salle de bain ?
+                </h2>
+              <p>Contactez-moi dès maintenant pour un devis gratuit !</p>
+            </div>
             <a href="#contact" class="button-secondary">Demander un devis</a>
         </div>
       </div>
@@ -159,7 +157,7 @@
               Le chantier s’est bien déroulé. Très professionnel et à l’écoute
               de la clientèle. Merci pour les conseils aussi.
             </p>
-            <div class="muted text-center">
+            <div class="avis-detail">
               <p>Horacia B</p>
               <p class="small">Mai 2024</p>
             </div>
@@ -170,7 +168,7 @@
               Très bonne prestation, artisan à l’écoute et très minutieux
               résultat égal à mon attente.
             </p>
-            <div class="muted text-center">
+            <div class="avis-detail">
               <p>Yves L</p>
               <p class="small">Mai 2024</p>
             </div>
@@ -181,7 +179,7 @@
               Professionnel sympathique et compétent. Je n’hésiterai par à
               refaire appel à ses services.
             </p>
-            <div class="muted text-center">
+            <div class="avis-detail">
               <p>Marc D</p>
               <p class="small">Mai 2024</p>
             </div>
@@ -195,7 +193,7 @@
               client. Le travail est conforme et le rendu de ma salle de bain me
               ravi ! je recommande et je repasserai par lui.
             </p>
-            <div class="muted text-center">
+            <div class="avis-detail">
               <p>Isabelle H</p>
               <p class="small">Mai 2024</p>
             </div>
@@ -206,7 +204,7 @@
               Artisan viable et expérimenté, fait très attention aux détails.
               Travail de qualité.
             </p>
-            <div class="muted text-center">
+            <div class="avis-detail">
               <p>Philippe T</p>
               <p class="small">Mai 2024</p>
             </div>
@@ -218,7 +216,7 @@
               solution à la problématique existante ce qui protège et sécurise
               l’ouvrage.
             </p>
-            <div class="muted text-center">
+            <div class="avis-detail">
               <p>Nicole L</p>
               <p class="small">Mai 2024</p>
             </div>
@@ -229,7 +227,7 @@
               Travaux fait à date et heure avec une qualité de professionnel et
               de bons conseils.
             </p>
-            <div class="muted text-center">
+            <div class="avis-detail">
               <p>Patrice P</p>
               <p class="small">Mai 2024</p>
             </div>
@@ -240,7 +238,7 @@
               Alan est très professionnel, il n’hésite pas à dire ce qui est
               possible ou pas de faire. A l’écoute de nos souhaits !!!!!
             </p>
-            <div class="muted text-center">
+            <div class="avis-detail">
               <p>Kevin D</p>
               <p class="small">Mai 2024</p>
             </div>
@@ -258,9 +256,9 @@
           métier :
         </p>
         <ul>
-          <li>Assurance décennale obligatoire</li>
-          <li>Assurance décennale facultative</li>
-          <li>Responsabilité civile</li>
+          <li class="bold">Assurance décennale obligatoire</li>
+          <li class="bold">Assurance décennale facultative</li>
+          <li class="bold">Responsabilité civile</li>
         </ul>
       </div>
     </section>
@@ -269,7 +267,7 @@
       <div class="container">
         <h2>Contact</h2>
         <p>SARL VPK</p>
-        <div class="flex direction-row justify-content-between align-items-center">
+        <div class="flex direction-row justify-content-between align-items-center flex-wrap">
           <div class="flex direction-column gap-20">
             <div class="flex align-items-center gap-10">
               <img src="./assets/icons/phone.svg" />

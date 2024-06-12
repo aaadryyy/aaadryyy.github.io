@@ -1,6 +1,7 @@
 @font-face {
   font-family: "FiraSans"; /* Name your font family */
-  src: url("./assets/font/Fira_Sans/FiraSans-Regular.ttf");
+  src: url("./assets/font/Fira_Sans/FiraSans-Regular.ttf")
+    surl("./assets/font/Fira_Sans/FiraSans-Bold.ttf");
 }
 
 body,
@@ -8,17 +9,25 @@ html {
   margin: 0;
   font-family: "FiraSans", sans-serif;
   line-height: 1.5;
-  font-size: 16px;
   --primary-color: #00aeef;
   --secondary-color: #242424;
   scroll-behavior: smooth;
+  font-size: calc(12px + 0.390625vw);
 }
 
 h1,
 h2,
 h3 {
-  font-weight: bold;
   margin: 0;
+  overflow-wrap: break-word;
+}
+
+h1 {
+  font-size: calc(32px + 0.390625vw);
+}
+
+h2 {
+  font-size: calc(14px + 0.390625vw);
 }
 
 p {
@@ -52,8 +61,8 @@ a {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-size: 16px;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 footer {
@@ -91,43 +100,57 @@ footer {
 }
 
 .container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding: 100px 10%;
   margin-right: auto;
   margin-left: auto;
   height: auto;
-  padding-top: 100px;
-  padding-bottom: 100px;
 }
 
-.hero {
+.bg-primary {
   background-color: var(--primary-color);
-  padding-top: 100px;
+  width: 100%;
+}
+.hero {
+  padding: 80px 0px;
+  h2 {
+    font-weight: normal;
+  }
+}
+.layout-2-col {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 20px;
+  p,
+  ul {
+  }
+  img {
+    width: 100%;
+    height: 500px;
+  }
 }
 
 .competences {
   margin-top: -180px;
-  padding-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
   .icon {
     width: 50px;
   }
-}
-
-.contact {
-  background-color: var(--secondary-color);
-  padding-bottom: 100px;
-}
-
-.assurances {
-  background-color: var(--primary-color);
+  p {
+  }
+  h3,
+  .muted {
+  }
 }
 
 .card {
   background-color: #fff;
+  min-width: 300px;
   padding: 20px;
   border: 1px solid #cecece;
-  min-width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -141,6 +164,29 @@ footer {
     width: 100%;
     text-align: center;
   }
+}
+
+.expertise {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chantiers {
+  h2 {
+    margin-bottom: 20px;
+  }
+  figcaption {
+  }
+}
+
+.contact {
+  background-color: var(--secondary-color);
+  padding-bottom: 100px;
+}
+
+.assurances {
+  background-color: var(--primary-color);
 }
 
 .gallerie {
@@ -160,6 +206,11 @@ footer {
   grid-gap: 1rem;
   .card {
     object-fit: cover;
+  }
+  .avis-detail {
+    color: #6c757d;
+    text-align: center;
+    white-space: nowrap;
   }
 }
 
@@ -251,7 +302,6 @@ footer {
 
 .square-500 {
   width: 500px;
-  min-width: 300px;
   height: 500px;
 }
 
@@ -280,7 +330,6 @@ footer {
 }
 
 .small {
-  font-size: 14px;
 }
 
 .min-width-300 {
@@ -298,4 +347,16 @@ footer {
 
 .max-width-500 {
   max-width: 500px;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.bold {
+  font-weight: bold;
 }
