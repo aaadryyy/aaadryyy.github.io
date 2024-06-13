@@ -9,10 +9,9 @@ html {
   margin: 0;
   font-family: "FiraSans", sans-serif;
   line-height: 1.5;
+  scroll-behavior: smooth;
   --primary-color: #00aeef;
   --secondary-color: #242424;
-  scroll-behavior: smooth;
-  font-size: calc(12px + 0.390625vw);
 }
 
 h1,
@@ -23,17 +22,16 @@ h3 {
 }
 
 h1 {
-  font-size: calc(32px + 0.390625vw);
+  font-size: 34px;
 }
 
-h2 {
-  font-size: calc(14px + 0.390625vw);
-}
-
-p {
+p,
+span,
+li,
+a,
+button {
   letter-spacing: 0.3px;
 }
-
 img {
   border-radius: 8px;
 }
@@ -97,10 +95,13 @@ footer {
   background-color: var(--secondary-color);
   color: white;
   padding: 10px 16px;
+  span {
+    letter-spacing: 0.8px;
+  }
 }
 
 .container {
-  padding: 100px 10%;
+  padding: 100px 5%;
   margin-right: auto;
   margin-left: auto;
   height: auto;
@@ -121,9 +122,6 @@ footer {
   align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 20px;
-  p,
-  ul {
-  }
   img {
     width: 100%;
     height: 500px;
@@ -359,4 +357,36 @@ footer {
 
 .bold {
   font-weight: bold;
+}
+
+@media (width <= 700px) {
+  h1 {
+    font-size: 36px;
+    box-sizing: border-box;
+  }
+  h2 {
+    font-size: 28px;
+    box-sizing: border-box;
+  }
+  h3 {
+    font-size: 24px;
+    box-sizing: border-box;
+  }
+  .top-bar {
+    font-size: 22px;
+  }
+  button,
+  a {
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  p,
+  li,
+  span,
+  figcaption {
+    font-size: 20px;
+  }
 }
