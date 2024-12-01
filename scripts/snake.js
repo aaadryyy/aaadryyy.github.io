@@ -3,7 +3,7 @@ const GRID_SIZE = 100;
 const PLAYER = [{ x: 10, y: 10 }];
 const SEEDS = [
   { x: 40, y: 50 },
-  { x: 32, y: 10 },
+  { x: 32, y: 15 },
 ];
 
 const board = document.getElementById("board");

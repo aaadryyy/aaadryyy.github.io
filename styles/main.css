@@ -75,3 +75,38 @@ ul,
 ol {
   padding-left: 15px;
 }
+
+.separator {
+  border-bottom: 1px solid #64646480;
+  width: 50%;
+  margin: 55px auto 50px auto;
+}
+
+ul {
+  li:not(:last-child) {
+    margin-bottom: 5px;
+  }
+}
+
+.align-center {
+  text-align: center;
+}
+
+.icon {
+  width: 20px;
+  border: 1px solid #64646480;
+  &.inline {
+    margin-bottom: -4px;
+  }
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.hover {
+  &:hover {
+    scale: 1.003;
+    transition: scale 0.2s;
+  }
+}

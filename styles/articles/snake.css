@@ -1,5 +1,6 @@
 html {
   --multiplier: 10;
+  --scale: 5;
 }
 
 #game {
@@ -11,8 +12,8 @@ html {
 
 #board {
   display: grid;
-  grid-template-columns: repeat(calc(var(--multiplier) * 10), 1fr);
-  grid-template-rows: repeat(calc(var(--multiplier) * 10), 1fr);
+  grid-template-columns: repeat(calc(var(--multiplier) * var(--scale)), 1fr);
+  grid-template-rows: repeat(calc(var(--multiplier) * var(--scale)), 1fr);
   height: 100%;
   width: 100%;
 }
@@ -48,4 +49,15 @@ html {
   height: 100%;
   width: 100%;
   background-color: yellow;
+}
+
+#sprites-overlay {
+  width: 55px;
+  height: 100px;
+  background-color: blue;
+  #sprites {
+    object-fit: none;
+    aspect-ratio: 1/1;
+    border-radius: none;
+  }
 }
