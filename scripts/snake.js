@@ -1,10 +1,7 @@
 let GAME_OVER = false;
 const GRID_SIZE = 100;
 const PLAYER = [{ x: 10, y: 10 }];
-const SEEDS = [
-  { x: 40, y: 50 },
-  { x: 32, y: 15 },
-];
+const SEEDS = [{ x: 40, y: 14 }];
 
 const board = document.getElementById("board");
 
@@ -41,8 +38,29 @@ const isVictory = () => {
 };
 
 const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+const EMOJI_ITERATIONS = 4;
+const randomNumberUpToN = (n) => Math.floor(Math.random() * n);
+const randomNumberUpToNWeighted = (n, favoredNumber) => {
+  // Créez une liste pondérée
+  let weightedList = [];
 
-const getItemCondition = (item, i, fertilizedTiles) => {
+  // Ajoutez les autres nombres
+  for (let i = 0; i < n; i++) {
+    weightedList.push(i);
+  }
+
+  // Ajoutez le nombre favorisé plusieurs fois
+  const weight = 5; // Vous pouvez ajuster ce poids selon vos besoins
+  for (let i = 0; i < weight; i++) {
+    weightedList.push(favoredNumber);
+  }
+
+  // Sélectionnez un nombre aléatoire de la liste pondérée
+  const randomIndex = Math.floor(Math.random() * weightedList.length);
+  return weightedList[randomIndex];
+};
+
+const endCondition = (item, i, fertilizedTiles) => {
   const isBelowMaxTiles = i < fertilizedTiles;
   const isInGrid = item.x + i < GRID_SIZE;
   return isInGrid && isBelowMaxTiles;
@@ -50,19 +68,29 @@ const getItemCondition = (item, i, fertilizedTiles) => {
 const animateItem = async (item, delay) => {
   const fertilizedTiles = 5;
 
-  for (let i = 0; getItemCondition(item, i, fertilizedTiles); i++) {
+  for (let i = 0; endCondition(item, i, fertilizedTiles); i++) {
+    // Below player's path
     const plantBottom = document.createElement("div");
-    plantBottom.setAttribute("id", "plant");
+    plantBottom.setAttribute(
+      "id",
+      `emoji-${randomNumberUpToNWeighted(EMOJI_ITERATIONS, 0)}`
+    );
     plantBottom.style.gridColumn = item.x;
     plantBottom.style.gridRow = item.y + i;
     board.appendChild(plantBottom);
 
+    // Above player's path
     const plantTop = document.createElement("div");
-    plantTop.setAttribute("id", "plant");
+    plantTop.setAttribute(
+      "id",
+      `emoji-${randomNumberUpToNWeighted(EMOJI_ITERATIONS, 0)}`
+    );
     plantTop.style.gridColumn = item.x;
     plantTop.style.gridRow = item.y - i;
     board.appendChild(plantTop);
     await timer(delay);
+
+    // TODO: make it work no matter the player's direction
   }
 };
 

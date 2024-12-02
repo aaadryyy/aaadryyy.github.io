@@ -34,9 +34,10 @@ html {
 }
 
 #player {
+  z-index: 1;
   height: 100%;
   width: 100%;
-  background-color: white;
+  background-color: blue;
 }
 
 #seed {
@@ -45,19 +46,77 @@ html {
   background-color: red;
 }
 
-#plant {
-  height: 100%;
-  width: 100%;
-  background-color: yellow;
+#emoji-0 {
+  z-index: 0;
+  color: lightgreen;
+  font-size: 10px;
+  animation: grow 0.3s ease-in-out forwards;
+  &::before {
+    content: "⚘";
+  }
+}
+#emoji-1 {
+  z-index: 0;
+  color: yellow;
+  font-size: 10px;
+  animation: grow 0.3s ease-in-out forwards;
+  &::before {
+    content: "⁕";
+  }
 }
 
-#sprites-overlay {
-  width: 55px;
-  height: 100px;
-  background-color: blue;
-  #sprites {
-    object-fit: none;
-    aspect-ratio: 1/1;
-    border-radius: none;
+#emoji-2 {
+  z-index: 0;
+  color: pink;
+  font-size: 10px;
+  animation: grow 0.3s ease-in-out forwards;
+  &::before {
+    content: "⁕";
+  }
+}
+
+#emoji-3 {
+  z-index: 0;
+  color: green;
+  font-size: 10px;
+  animation: grow 0.3s ease-in-out forwards;
+  &::before {
+    content: "⁕";
+  }
+}
+#plant-drawing-0 {
+  z-index: 0;
+  animation: grow 0.3s ease-in-out forwards;
+  &::before {
+    content: "";
+    display: inline-block;
+    background-image: url(../../assets/images/articles/snake/flower.svg);
+    background-size: 10px;
+    width: 10px;
+    height: 10px;
+  }
+}
+#plant-drawing-1 {
+  z-index: 0;
+  animation: grow 0.3s ease-in-out forwards;
+  &::before {
+    content: "";
+    display: inline-block;
+    background-image: url(../../assets/images/articles/snake/flower-full.svg);
+    background-size: 15px;
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
   }
 }
