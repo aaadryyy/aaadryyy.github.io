@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../styles/articles/default-layout.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../styles/main.css" />
+    <title>
+      Comment migrer son app React de npm vers pnpm ?
+    </title>
+  </head>
+  <body>
+    <main>
+      <article>
+        <section class="header">
+          <a href="../index.html">Retour</a>
+          <h1 class="title">
+            Comment migrer son app React de npm vers pnpm ?
+          </h1>
+        </section>
+
+        <section>
+          <ol class="spaced-list">
+            <li>
+              Depuis le terminal lancer <code>npm install -g pnpm</code>
+              <p class="muted italic">Avec npm ou yarn, en fonction de vos préférences...</p>
+            </li>
+            <li>
+              Supprimer le dossier <code>node_modules</code>.
+              <p class="muted italic">
+                En ligne de commande la commande est <code>npx npkill</code>.
+              </p>
+            </li>
+            <li>
+                Dans votre <code>package.json</code>, dans le scripts rajouter <code>"preinstall": "npx only-allow pnpm"</code>
+              <p class="muted italic">
+               Ici on force l'utilisation de <code>pnpm</code>.
+              </p>
+            </li>
+            <li>
+              Créer un <code>pnpm-workspace.yaml</code> avec :
+                <pre>
+                    <code>
+                        packages:
+
+                        # ajoute des paquets dans ces dossiers
+                        - "apps/**"
+                        - 'packages/**'
+
+                        # optionnel: exclu des dossiers
+                        - '!**/test/**'
+                    </code>
+                </pre>
+            </li>
+            <li>
+              Lancer <code>pnpm import</code>
+              <p class="muted italic">Cela va créer un pnpm-lock.yaml basé sur package-lock.json (ou yarn.lock)</p>
+            </li>
+            <li>
+              Supprimer <code>package-lock.json</code>
+            </li>
+            <li>
+              Et installer les dépendances avec <code>pnpm i</code>
+              <p class="muted italic">Sans oublier de supprimer toute notion de npm de l'app !</p>
+            </li>
+          </ol>
+          <p>Et voilà !</p>
+      </article>
+    </main>
+  </body>
+</html>
